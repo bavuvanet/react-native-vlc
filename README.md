@@ -1,19 +1,16 @@
-# react-native-vlc-player
-
-A `<VLCPlayer>` component for react-native
-
-Based on [react-native-vlcplayer](https://github.com/xiongchuan86/react-native-vlcplayer) from [xiongchuan86](https://github.com/xiongchuan86) and on [react-native-vlc-player](https://github.com/ghondar/react-native-vlc-player) from [ghondar](https://github.com/ghondar)
+# react-native-vlc
 
 ### Add it to your project
 
-Run `npm i -S react-native-vlc-player`
+Add "react-native-vlc": "https://github.com/bavuvanet/react-native-vlc.git" in package.json
+Run yarn install
 
 #### iOS
 
-- add `pod 'MobileVLCKit-unstable', '3.0.0a44'` in Podfile (stable version of VLCKit not working in iOS 11 yet)
+- add `pod 'MobileVLCKit-unstable', '3.0.0a44'` in Podfile
 - `pod install` inside ./ios/ folder
 - `rnpm link react-native-vlc-player`
-- also you must disable bitcode option in target build settings (otherwise it not linked correctly for armv7)
+- also you must disable bitcode option in target build settings
 - also you must add `libstdc++.6.0.9.tbd` to `Linked Framework and Libraries`
 
 #### Android
