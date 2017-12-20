@@ -120,19 +120,20 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
             int networkCaching = pref.getInt("network_caching_value", 0);
             if (networkCaching > 60000) networkCaching = 60000;
             else if (networkCaching < 0) networkCaching = 0;
-            options.add("--audio-time-stretch");
-            options.add("--avcodec-skiploopfilter");
-            options.add("" + deblocking);
-            options.add("--avcodec-skip-frame");
-            options.add("0");
-            options.add("--avcodec-skip-idct");
-            options.add("0");
-            options.add("--subsdec-encoding");
-            options.add("--stats");
+//            options.add("--audio-time-stretch");
+//            options.add("--avcodec-skiploopfilter");
+//            options.add("" + deblocking);
+//            options.add("--avcodec-skip-frame");
+//            options.add("0");
+//            options.add("--avcodec-skip-idct");
+//            options.add("0");
+//            options.add("--subsdec-encoding");
+//            options.add("--stats");
             if (networkCaching > 0) options.add("--network-caching=" + networkCaching);
-            options.add("--androidwindow-chroma");
-            options.add("RV32");
+//            options.add("--androidwindow-chroma");
+//            options.add("RV32");
 
+            options.add("--rtsp-tcp");
             options.add("-vv");
 
             libvlc = new LibVLC(options);
