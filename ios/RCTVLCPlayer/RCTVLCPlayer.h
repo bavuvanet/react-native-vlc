@@ -8,6 +8,7 @@
 
 @property (nonatomic) BOOL paused;
 @property (nonatomic) float volume;
+- (void)_release;
 
 @property (nonatomic, copy) RCTDirectEventBlock onVLCPaused;
 @property (nonatomic, copy) RCTDirectEventBlock onVLCStopped;

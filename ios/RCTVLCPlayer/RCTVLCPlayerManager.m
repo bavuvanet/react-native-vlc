@@ -8,7 +8,8 @@
     static VLCMediaPlayer *sharedPlayer = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedPlayer = [[VLCMediaPlayer alloc] init];
+        NSArray* options = @[ @"--rtsp-tcp", @"-vvv"];
+        sharedPlayer = [[VLCMediaPlayer alloc] initWithOptions:options];
     });
     return sharedPlayer;
 }
@@ -16,8 +17,15 @@
 RCT_EXPORT_MODULE();
 
 - (UIView *)view {
-    return [[RCTVLCPlayer alloc] initWithPlayer:[RCTVLCPlayerManager sharedVLCPlayer]];
+    self.playerView = [[RCTVLCPlayer alloc] initWithPlayer:[RCTVLCPlayerManager sharedVLCPlayer]];
+    return self.playerView;
 }
+
+
+RCT_EXPORT_METHOD(releaseView) {
+    [self.playerView _release];
+}
+
 
 RCT_EXPORT_VIEW_PROPERTY(source, NSDictionary);
 RCT_EXPORT_VIEW_PROPERTY(paused, BOOL);

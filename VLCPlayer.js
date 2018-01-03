@@ -44,6 +44,10 @@ export default class VLCPlayer extends Component {
     this.setNativeProps({ seek: pos })
   }
 
+  release() {
+    VLCKPlayerManager.releaseView()
+  }
+
   snapshot (path) {
     this.setNativeProps({ snapshotPath: path })
   }
