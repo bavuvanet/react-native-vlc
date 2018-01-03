@@ -17,6 +17,7 @@ import com.facebook.react.bridge.LifecycleEventListener;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
+import com.github.rongi.rotate_layout.layout.RotateLayout;
 import com.vlcplayer.R;
 
 import org.videolan.libvlc.IVLCVout;
@@ -94,6 +95,8 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
     private Media media;
     private boolean autoPlay;
 
+    RotateLayout rotateLayout;
+
     public VLCPlayerView(ThemedReactContext context) {
         super(context);
         mThemedReactContext = context;
@@ -105,9 +108,15 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
     private void init() {
         inflate(getContext(), R.layout.player, this);
 
+        rotateLayout = findViewById(R.id.rotateLayout);
+
         mSurface = (SurfaceView) findViewById(R.id.vlc_surface);
         holder = mSurface.getHolder();
         initializePlayerIfNeeded();
+    }
+
+    public void rotate(boolean isPotrait) {
+        rotateLayout.setAngle(isPotrait ? 0 : 90);
     }
 
     private void initializePlayerIfNeeded() {

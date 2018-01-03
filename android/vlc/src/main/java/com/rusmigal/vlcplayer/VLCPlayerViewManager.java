@@ -20,6 +20,7 @@ public class VLCPlayerViewManager extends ViewGroupManager<VLCPlayerView> {
     public static final String PROP_PAUSED = "paused";
     public static final String PROP_VOLUME = "volume";
     public static final String PROP_RESIZE = "resize";
+    public static final String PROP_ROTATE = "rotate";
 
     @Override
     public String getName() {
@@ -75,5 +76,10 @@ public class VLCPlayerViewManager extends ViewGroupManager<VLCPlayerView> {
         int width = resize.getInt("width");
         int height = resize.getInt("height");
         playerView.changeSurfaceLayout(width, height);
+    }
+
+    @ReactProp(name = PROP_ROTATE)
+    public void rotate(final VLCPlayerView playerView, boolean isPotrait) {
+        playerView.rotate(isPotrait);
     }
 }

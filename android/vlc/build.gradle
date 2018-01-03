@@ -22,4 +22,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.facebook.react:react-native:+"
     compile 'de.mrmaffen:vlc-android-sdk:1.9.8'
+
+    compile 'rongi.rotate-layout:rotate-layout:3.0.0'
 }
