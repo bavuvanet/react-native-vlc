@@ -320,6 +320,8 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
     }
 
     public void seek(float seek) {
+        if(null == mMediaPlayer) return;
+
         WritableMap event = Arguments.createMap();
         event.putDouble(EVENT_PROP_CURRENT_TIME, mMediaPlayer.getTime());
         event.putDouble(EVENT_PROP_SEEK_TIME, seek);
@@ -392,7 +394,7 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
                 mEventEmitter.receiveEvent(getId(), Events.EVENT_STOPPED.toString(), null);
                 break;
             case MediaPlayer.Event.Playing:
-                eventMap.putDouble(EVENT_PROP_DURATION, mMediaPlayer.getLength());
+                if(null != mMediaPlayer) eventMap.putDouble(EVENT_PROP_DURATION, mMediaPlayer.getLength());
                 mEventEmitter.receiveEvent(getId(), Events.EVENT_PLAYING.toString(), eventMap);
                 break;
 //            case MediaPlayer.Event.Buffering:
@@ -405,10 +407,13 @@ public class VLCPlayerView extends FrameLayout implements IVLCVout.Callback, Lif
                 mEventEmitter.receiveEvent(getId(), Events.EVENT_ERROR.toString(), null);
                 break;
             case MediaPlayer.Event.TimeChanged:
-                eventMap.putDouble(EVENT_PROP_CURRENT_TIME, mMediaPlayer.getTime());
-                eventMap.putDouble(EVENT_PROP_DURATION, mMediaPlayer.getLength());
-                eventMap.putDouble(EVENT_PROP_POSITION, mMediaPlayer.getPosition());
-                mEventEmitter.receiveEvent(getId(), Events.EVENT_PROGRESS.toString(), eventMap);
+                if(null != mMediaPlayer) {
+                    eventMap.putDouble(EVENT_PROP_CURRENT_TIME, mMediaPlayer.getTime());
+                    eventMap.putDouble(EVENT_PROP_DURATION, mMediaPlayer.getLength());
+                    eventMap.putDouble(EVENT_PROP_POSITION, mMediaPlayer.getPosition());
+                    mEventEmitter.receiveEvent(getId(), Events.EVENT_PROGRESS.toString(), eventMap);
+                }
+
                 break;
         }
     }
